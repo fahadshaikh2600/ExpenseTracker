@@ -23,10 +23,10 @@ function App() {
   });
 
   const [showAddExpense, setShowAddExpense] = useState(false);
-  const [showAddBudget, setShowAddBudget] = useState(false);
+  const [showAddBudget, setShowAddBudget] = useState(null);
   const [deleteTargetId, setDeleteTargetId] = useState(null);
 
-  const [editData, setEditData] = useState(false);
+  const [editData, setEditData] = useState(null);
   const [filterCategory, setFilterCategory] = useState("All");
   const [filterDate, setFilterDate] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,7 +49,7 @@ function App() {
   const handleAddExpense = (expense) => {
     const updated = [...expenseItem, { ...expense, id: Date.now() }];
     setExpenseItem(updated);
-    setShowAddExpense(null);
+    setShowAddExpense(false);
   };
 
   const handleEditExpense = (updatedExpense) => {
@@ -93,12 +93,12 @@ function App() {
         setSearchTerm={setSearchTerm}
       />
       {showAddBudget && (
-        <AddBudget onAdd={handleAddBudget} onClose={() => setShowAddBudget(false)} />
+        <AddBudget onAdd={handleAddBudget} onClose={() => setShowAddBudget(null)} />
       )}
 
 
       {showAddExpense && (
-        <AddExpense onAdd={handleAddExpense} onClose={() => setShowAddExpense(null)} />
+        <AddExpense onAdd={handleAddExpense} onClose={() => setShowAddExpense(false)} />
       )}
 
       {editData && (

@@ -71,7 +71,7 @@ export const Charts = ({ data }) => {
                         <Tooltip />
                         <Legend />
                         <Bar fill="#E5E7EB" barSize={60} radius={[10, 10, 10, 10]} />
-                        <Bar dataKey="value" fill="#3B82F6" barSize={60} radius={[10, 10, 0, 0]} />
+                        <Bar dataKey="₹" fill="#3B82F6" barSize={60} radius={[10, 10, 0, 0]} />
 
 
                     </BarChart>

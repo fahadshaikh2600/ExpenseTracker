@@ -1,9 +1,12 @@
+import { useState, useEffect, useRef } from 'react';
 
 
 export function Delete({ onCancel, onConfirm }) {
+
+
     return (
-        <div className="modal-backdrop">
-            <div className="delete-modal">
+        <div className="modal-backdrop" >
+            <div className="delete-modal" >
                 <div className="icon">❕</div>
                 <h2>Are you sure</h2>
                 <p>You won’t be able to revert this!</p>

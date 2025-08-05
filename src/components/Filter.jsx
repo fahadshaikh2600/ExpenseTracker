@@ -1,4 +1,4 @@
-import "./Filters.css";
+
 import { useState } from "react";
 
 
@@ -19,7 +19,7 @@ export const Filter = ({
     return (
         <div className="filter-container">
 
-            <input type="text" placeholder="Search" className="search"
+            <input type="text" placeholder="🔍 Search" className="search"
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
 

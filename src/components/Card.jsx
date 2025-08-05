@@ -1,5 +1,3 @@
-import "./Card.css";
-
 export function Card({ name, amount }) {
     return (
         <div className="card">
