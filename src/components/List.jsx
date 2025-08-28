@@ -42,8 +42,8 @@ export function List({ items, onDelete, onEdit }) {
                             <td>{expense.name}</td>
                             <td>₹{expense.amount}</td>
                             <td>
-                                <button className="edit-btn" onClick={() => onEdit(expense)}>Edit</button>
-                                <button className="delete-btn" onClick={() => onDelete(expense.id)}>Delete</button>
+                                <button className="edit-btn" onClick={() => onEdit(expense)}> ✏️ Edit</button>
+                                <button className="delete-btn" onClick={() => onDelete(expense.id)}> 🗑️ Delete</button>
                             </td>
                         </tr>
                     ))}

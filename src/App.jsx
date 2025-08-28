@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { Card } from './components/Card';
 import { Filter } from './components/Filter';
-import { List } from './components/List';
 import { AddExpense } from './components/AddExpense';
 import { EditExpense } from './components/Edit';
-import { Charts } from './components/Charts';
 import { AddBudget } from './components/AddBudget';
+import { Charts } from './components/Charts';
 import { Delete } from './components/Delete';
+import { List } from './components/List';
 
 
 function App() {
@@ -47,12 +47,32 @@ function App() {
   }, [budget, expenseItem]);
 
   const handleAddExpense = (expense) => {
+    const totalExpense = expenseItem.reduce((total, e) => total + Number(e.amount), 0);
+    const remainingBudget = budget - totalExpense;
+
+    if (expense.amount > remainingBudget) {
+      alert("You don't have enough budget for this expense!");
+      return;
+    }
     const updated = [...expenseItem, { ...expense, id: Date.now() }];
     setExpenseItem(updated);
     setShowAddExpense(false);
   };
 
   const handleEditExpense = (updatedExpense) => {
+
+    const totalExpenseWithoutCurrent = expenseItem
+      .filter((item) => item.id !== updatedExpense.id)
+      .reduce((total, e) => total + Number(e.amount), 0);
+
+    const newTotal = totalExpenseWithoutCurrent + Number(updatedExpense.amount);
+
+    if (newTotal > budget) {
+      alert("This update exceeds your budget!");
+      return;
+    }
+
+
     const updatedList = expenseItem.map((item) =>
       item.id === updatedExpense.id ? updatedExpense : item
     );
@@ -61,7 +81,7 @@ function App() {
   };
 
   const handleAddBudget = (amount) => {
-    setBudget(amount);
+    setBudget((prevBudget) => prevBudget + Number(amount));
   };
 
   const handleDelete = (id) => {
@@ -93,25 +113,27 @@ function App() {
         setSearchTerm={setSearchTerm}
       />
       {showAddBudget && (
-        <AddBudget onAdd={handleAddBudget} onClose={() => setShowAddBudget(null)} />
+        <AddBudget onAdd={handleAddBudget} onClose={() => setShowAddBudget(false)} budget={budget}
+          totalExpense={totalExpense} />
       )}
 
 
       {showAddExpense && (
-        <AddExpense onAdd={handleAddExpense} onClose={() => setShowAddExpense(false)} />
+        <AddExpense onAdd={handleAddExpense} onClose={() => setShowAddExpense(false)} budget={budget}
+          totalExpense={totalExpense} />
       )}
 
       {editData && (
         <EditExpense
           data={editData}
           onUpdate={handleEditExpense}
-          onClose={() => setEditData(null)}
+          onClose={() => setEditData(false)}
         />
       )}
-      <div className="charts-conatiner">
+      {/* <div className="charts-conatiner">
         <Charts data={filteredExpenses} />
 
-      </div>
+      </div> */}
       <List
         items={filteredExpenses}
         onDelete={handleDelete}
@@ -119,7 +141,7 @@ function App() {
       />
       {deleteTargetId !== null && (
         <Delete
-          onCancel={() => setDeleteTargetId(null)}
+          onCancel={() => setDeleteTargetId(false)}
           onConfirm={confirmDelete}
         />
       )}

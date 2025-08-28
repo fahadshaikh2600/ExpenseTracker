@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 
 
-export function AddExpense({ onAdd, onClose }) {
+export function AddExpense({ onAdd, onClose, budget, totalExpense }) {
     const modalRef = useRef();
+    const remainingBudget = budget - totalExpense;
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -48,6 +49,10 @@ export function AddExpense({ onAdd, onClose }) {
         const parsedAmount = parseFloat(amount);
         if (isNaN(parsedAmount) || parsedAmount <= 0) {
 
+            return;
+        }
+        if (parsedAmount > remainingBudget) {
+            alert("You don’t have enough remaining budget to add this expense.");
             return;
         }
 

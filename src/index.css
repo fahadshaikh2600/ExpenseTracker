@@ -2,16 +2,16 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Arimo';
   width: 100%;
 }
 
 .heading {
-  margin-left: 80px;
+  margin-left: 100px;
 }
 
 .greeting {
-  margin-left: 80px;
+  margin-left: 100px;
 }
 
 .charts-container {
@@ -442,23 +442,21 @@ thead {
 
 .filter-container {
   display: flex;
-  gap: 10px;
+  gap: 13px;
   margin-left: 100px;
   margin-top: 40px;
-  padding: 20px;
+
 }
 
 .search {
   width: 123px;
-  height: 35px;
+  height: 38px;
   opacity: 1;
   border-radius: 40px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 13px;
+  padding-left: 15px;
   color: #070707;
   border: 2px solid #B5B5B5;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .filter {
@@ -467,15 +465,12 @@ thead {
   border: none;
   cursor: pointer;
   width: 160px;
-  height: 60px;
+  height: 40px;
   gap: 15px;
   border-radius: 40px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 18px;
+
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 
 }
 
@@ -493,7 +488,7 @@ thead {
   border: none;
   cursor: pointer;
   width: 150px;
-  height: 50px;
+  height: 40px;
   gap: 15px;
 }
 
@@ -503,10 +498,10 @@ sup {
 
 .card-container {
   display: flex;
-  width: 80%;
+
   gap: 30px;
   margin-bottom: 35px;
-  margin-left: 150px;
+  margin-left: 100px;
   margin-top: 35px;
 }
 
@@ -579,7 +574,7 @@ th {
   font-weight: 600;
 }
 
-tr:hover {
+tbody tr:hover {
   background-color: #f6f6ff;
 }
 
@@ -630,4 +625,8 @@ tr:hover {
   background: #4f46e5;
   color: white;
   font-weight: bold;
+}
+
+.search:focus::placeholder {
+  color: transparent;
 }

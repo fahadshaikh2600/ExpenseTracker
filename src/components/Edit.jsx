@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 
-export const EditExpense = ({ data, onUpdate, onClose }) => {
+export const EditExpense = ({ data, onUpdate, onClose, budget, totalExpense }) => {
     const modalRef = useRef();
     const [title, setTitle] = useState(data.name);
     const [amount, setAmount] = useState(data.amount);
     const [category, setCategory] = useState(data.category);
     const [date, setDate] = useState(data.date);
+    const remainingBudget = budget - totalExpense + Number(data.amount);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,6 +19,10 @@ export const EditExpense = ({ data, onUpdate, onClose }) => {
         }
         if (isNaN(parsedAmount) || parsedAmount <= 0) {
 
+            return;
+        }
+        if (parsedAmount > remainingBudget) {
+            alert("This updated amount exceeds your remaining budget.");
             return;
         }
 
